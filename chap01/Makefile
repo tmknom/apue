@@ -21,3 +21,7 @@ process: ## run process
 shell: ## run shell
 	$(call gcc,$(CURRENT_DIR)/shell.c)
 	$(call exec)
+
+error: ## run error
+	$(call gcc,$(CURRENT_DIR)/error.c)
+	$(call exec)
