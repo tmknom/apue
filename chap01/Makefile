@@ -13,3 +13,7 @@ io: ## run io
 stdio: ## run stdio
 	$(call gcc,$(CURRENT_DIR)/stdio.c)
 	$(call exec)
+
+process: ## run process
+	$(call gcc,$(CURRENT_DIR)/process.c)
+	$(call exec)
