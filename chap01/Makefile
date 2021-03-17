@@ -9,3 +9,7 @@ ls: ## run ls
 io: ## run io
 	$(call gcc,$(CURRENT_DIR)/io.c)
 	$(call exec)
+
+stdio: ## run stdio
+	$(call gcc,$(CURRENT_DIR)/stdio.c)
+	$(call exec)
