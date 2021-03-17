@@ -29,3 +29,7 @@ error: ## run error
 uid: ## run uid
 	$(call gcc,$(CURRENT_DIR)/uid.c)
 	$(call exec)
+
+signal: ## run signal
+	$(call gcc,$(CURRENT_DIR)/signal.c)
+	$(call exec)
