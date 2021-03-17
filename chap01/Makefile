@@ -17,3 +17,7 @@ stdio: ## run stdio
 process: ## run process
 	$(call gcc,$(CURRENT_DIR)/process.c)
 	$(call exec)
+
+shell: ## run shell
+	$(call gcc,$(CURRENT_DIR)/shell.c)
+	$(call exec)
