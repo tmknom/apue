@@ -25,3 +25,7 @@ shell: ## run shell
 error: ## run error
 	$(call gcc,$(CURRENT_DIR)/error.c)
 	$(call exec)
+
+uid: ## run uid
+	$(call gcc,$(CURRENT_DIR)/uid.c)
+	$(call exec)
