@@ -7,3 +7,7 @@ lseek: ## run lseek
 hole: ## run hole
 	$(call gcc,$(CURRENT_DIR)/hole.c)
 	$(call exec)
+
+fcntl: ## run fcntl
+	$(call gcc,$(CURRENT_DIR)/fcntl.c)
+	make run
