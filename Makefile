@@ -9,6 +9,7 @@ BINARY_PATH := $(WORK_PATH)/bin/main
 OBJECT_PATH := $(WORK_PATH)/bin/main.o
 LIB_PATH := $(WORK_PATH)/lib/libapue.a
 PROJECT_ROOT := $$(git rev-parse --show-toplevel)
+CURRENT_DIR := $(WORK_PATH)/$(notdir $(CURDIR))
 
 define gcc
 	docker run --rm -w /work -v $(PROJECT_ROOT):/work debian:gcc gcc -Wall -Og -c -o $(OBJECT_PATH) ${1}
@@ -16,7 +17,7 @@ define gcc
 endef
 
 define exec
-	docker run --rm -w /work -v $(PROJECT_ROOT):/work debian:gcc $(BINARY_PATH) ${1}
+	docker run -it --rm -w /work -v $(PROJECT_ROOT):/work debian:gcc $(BINARY_PATH) ${1}
 endef
 
 # Phony Targets
