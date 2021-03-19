@@ -16,3 +16,7 @@ umask: ## run umask
 chmod: ## run chmod
 	$(call gcc,$(CURRENT_DIR)/chmod.c)
 	$(call exec)
+
+unlink: ## run unlink
+	$(call gcc,$(CURRENT_DIR)/unlink.c)
+	$(call exec)
