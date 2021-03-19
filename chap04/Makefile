@@ -20,3 +20,7 @@ chmod: ## run chmod
 unlink: ## run unlink
 	$(call gcc,$(CURRENT_DIR)/unlink.c)
 	$(call exec)
+
+futimens: ## run futimens
+	$(call gcc,$(CURRENT_DIR)/futimens.c)
+	make run
