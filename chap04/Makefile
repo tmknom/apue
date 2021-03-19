@@ -12,3 +12,7 @@ access: ## run access
 umask: ## run umask
 	$(call gcc,$(CURRENT_DIR)/umask.c)
 	$(call exec)
+
+chmod: ## run chmod
+	$(call gcc,$(CURRENT_DIR)/chmod.c)
+	$(call exec)
