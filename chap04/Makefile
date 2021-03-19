@@ -3,3 +3,8 @@
 lstat: ## run lstat
 	$(call gcc,$(CURRENT_DIR)/lstat.c)
 	$(call exec, /etc/passwd /etc /dev/tty /dev/fd)
+
+access: ## run access
+	$(call gcc,$(CURRENT_DIR)/access.c)
+	$(call exec, /work/Makefile)
+	$(call exec, /etc/shadow)
