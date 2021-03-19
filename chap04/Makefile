@@ -8,3 +8,7 @@ access: ## run access
 	$(call gcc,$(CURRENT_DIR)/access.c)
 	$(call exec, /work/Makefile)
 	$(call exec, /etc/shadow)
+
+umask: ## run umask
+	$(call gcc,$(CURRENT_DIR)/umask.c)
+	$(call exec)
