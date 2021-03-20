@@ -11,3 +11,7 @@ echo: ## run echo
 setjmp: ## run setjmp
 	$(call gcc,$(CURRENT_DIR)/setjmp.c)
 	$(call exec)
+
+getrlimit: ## run getrlimit
+	$(call gcc,$(CURRENT_DIR)/getrlimit.c)
+	$(call exec)
