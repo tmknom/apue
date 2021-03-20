@@ -15,3 +15,7 @@ tmpfile: ## run tmpfile
 mkstemp: ## run mkstemp
 	$(call gcc,$(CURRENT_DIR)/mkstemp.c)
 	$(call exec)
+
+fmemopen: ## run fmemopen
+	$(call gcc,$(CURRENT_DIR)/fmemopen.c)
+	$(call exec)
