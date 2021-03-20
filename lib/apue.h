@@ -22,6 +22,11 @@
 #define MAXLINE 4096
 
 /*
+ * IO関数のプロトタイプ
+ */
+char *path_alloc(size_t *sizep);
+
+/*
  * エラー関数のプロトタイプ
  *
  * __attribute__：関数属性の定義
