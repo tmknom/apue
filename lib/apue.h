@@ -27,6 +27,11 @@
 char *path_alloc(size_t *sizep);
 
 /*
+ * プロセス関数のプロトタイプ
+ */
+void pr_exit(int status);
+
+/*
  * エラー関数のプロトタイプ
  *
  * __attribute__：関数属性の定義
