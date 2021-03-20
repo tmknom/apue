@@ -7,3 +7,7 @@ atexit: ## run atexit
 echo: ## run echo
 	$(call gcc,$(CURRENT_DIR)/echo.c)
 	$(call exec, foo bar baz)
+
+setjmp: ## run setjmp
+	$(call gcc,$(CURRENT_DIR)/setjmp.c)
+	$(call exec)
