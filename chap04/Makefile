@@ -32,3 +32,7 @@ chdir: ## run chdir
 getcwd: ## run getcwd
 	$(call gcc,$(CURRENT_DIR)/getcwd.c)
 	$(call exec)
+
+special: ## run special
+	$(call gcc,$(CURRENT_DIR)/special.c)
+	$(call exec, / /root /dev/tty)
