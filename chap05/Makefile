@@ -11,3 +11,7 @@ fgets: ## run fgets
 tmpfile: ## run tmpfile
 	$(call gcc,$(CURRENT_DIR)/tmpfile.c)
 	$(call exec)
+
+mkstemp: ## run mkstemp
+	$(call gcc,$(CURRENT_DIR)/mkstemp.c)
+	$(call exec)
