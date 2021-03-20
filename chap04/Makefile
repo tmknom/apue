@@ -24,3 +24,7 @@ unlink: ## run unlink
 futimens: ## run futimens
 	$(call gcc,$(CURRENT_DIR)/futimens.c)
 	make run
+
+chdir: ## run chdir
+	$(call gcc,$(CURRENT_DIR)/chdir.c)
+	$(call exec)
