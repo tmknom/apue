@@ -28,3 +28,7 @@ futimens: ## run futimens
 chdir: ## run chdir
 	$(call gcc,$(CURRENT_DIR)/chdir.c)
 	$(call exec)
+
+getcwd: ## run getcwd
+	$(call gcc,$(CURRENT_DIR)/getcwd.c)
+	$(call exec)
