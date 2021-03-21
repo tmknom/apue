@@ -17,5 +17,9 @@ race: ## run race
 	$(call exec)
 
 echoall: ## run echoall
-	$(call gcc,$(CURRENT_DIR)/echoall.c)
+	docker run --rm -w /work -v $(PROJECT_ROOT):/work debian:gcc gcc -Wall -Og -o $(WORK_PATH)/bin/echoall $(CURRENT_DIR)/echoall.c $(LIB_PATH)
+	docker run -it --rm -w /work -v $(PROJECT_ROOT):/work debian:gcc $(WORK_PATH)/bin/echoall
+
+exec: echoall ## run exec
+	$(call gcc,$(CURRENT_DIR)/exec.c)
 	$(call exec)
