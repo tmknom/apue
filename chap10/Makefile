@@ -7,3 +7,7 @@ sigusr: ## run sigusr
 getpwnam: ## run getpwnam
 	$(call gcc,$(CURRENT_DIR)/getpwnam.c)
 	make run
+
+sigpending: ## run sigpending
+	$(call gcc,$(CURRENT_DIR)/sigpending.c)
+	make run
