@@ -15,3 +15,7 @@ waitpid: ## run waitpid
 race: ## run race
 	$(call gcc,$(CURRENT_DIR)/race.c)
 	$(call exec)
+
+echoall: ## run echoall
+	$(call gcc,$(CURRENT_DIR)/echoall.c)
+	$(call exec)
