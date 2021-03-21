@@ -31,6 +31,8 @@ char *path_alloc(size_t *sizep);
  */
 void pr_exit(int status);
 
+int system(const char *cmdstring);
+
 /*
  * エラー関数のプロトタイプ
  *
