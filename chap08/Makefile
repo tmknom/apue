@@ -36,3 +36,7 @@ nice: ## run nice
 	$(call gcc,$(CURRENT_DIR)/nice.c)
 	$(call exec)
 	$(call exec,20)
+
+times: ## run times
+	$(call gcc,$(CURRENT_DIR)/times.c)
+	$(call exec,"sleep 5" "date" "man bash >/dev/null")
