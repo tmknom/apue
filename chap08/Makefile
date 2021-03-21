@@ -27,3 +27,7 @@ exec: echoall ## run exec
 system: ## run system
 	$(call gcc,$(CURRENT_DIR)/system.c)
 	$(call exec)
+
+uid: ## run uid
+	docker run --rm -w /work -v $(PROJECT_ROOT):/work debian:gcc gcc -Wall -Og -o $(WORK_PATH)/bin/uid $(CURRENT_DIR)/uid.c $(LIB_PATH)
+	docker run -it --rm -w /work -v $(PROJECT_ROOT):/work debian:gcc $(WORK_PATH)/bin/uid
