@@ -23,3 +23,7 @@ echoall: ## run echoall
 exec: echoall ## run exec
 	$(call gcc,$(CURRENT_DIR)/exec.c)
 	$(call exec)
+
+system: ## run system
+	$(call gcc,$(CURRENT_DIR)/system.c)
+	$(call exec)
