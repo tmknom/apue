@@ -3,3 +3,7 @@
 sigusr: ## run sigusr
 	$(call gcc,$(CURRENT_DIR)/sigusr.c)
 	make run
+
+getpwnam: ## run getpwnam
+	$(call gcc,$(CURRENT_DIR)/getpwnam.c)
+	make run
