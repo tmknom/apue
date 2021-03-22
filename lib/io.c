@@ -4,6 +4,7 @@
 #include "apue.h"
 #include <errno.h>
 #include <limits.h>
+#include <fcntl.h>
 
 #ifdef PATH_MAX
 static long pathmax = PATH_MAX;
@@ -55,4 +56,17 @@ char *path_alloc(size_t *sizep) { // 非nullの場合には、sizepに確保し�
         *sizep = size;
 
     return ptr;
+}
+
+/*
+ * ファイル全体にライトロック
+ */
+int lockfile(int fd) {
+    struct flock fl;
+
+    fl.l_type = F_WRLCK;
+    fl.l_start = 0;
+    fl.l_whence = SEEK_SET;
+    fl.l_len = 0;
+    return (fcntl(fd, F_SETLK, &fl));
 }

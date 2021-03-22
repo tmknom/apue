@@ -27,6 +27,8 @@
  */
 char *path_alloc(size_t *sizep);
 
+int lockfile(int fd);
+
 /*
  * プロセス関数のプロトタイプ
  */
