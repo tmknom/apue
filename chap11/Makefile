@@ -15,3 +15,7 @@ exit2: ## run exit2
 cleanup: ## run cleanup
 	$(call gcc,$(CURRENT_DIR)/cleanup.c)
 	$(call exec)
+
+timedlock: ## run timedlock
+	$(call gcc,$(CURRENT_DIR)/timedlock.c)
+	$(call exec)
