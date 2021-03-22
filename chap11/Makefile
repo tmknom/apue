@@ -11,3 +11,7 @@ exit: ## run exit
 exit2: ## run exit2
 	$(call gcc,$(CURRENT_DIR)/exit2.c)
 	$(call exec)
+
+cleanup: ## run cleanup
+	$(call gcc,$(CURRENT_DIR)/cleanup.c)
+	$(call exec)
