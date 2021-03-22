@@ -27,3 +27,7 @@ atomic: ## run atomic
 system: ## run system
 	$(call gcc,$(CURRENT_DIR)/system.c)
 	make run
+
+job: ## run job
+	$(call gcc,$(CURRENT_DIR)/job.c)
+	make run
