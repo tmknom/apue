@@ -35,6 +35,11 @@ void pr_exit(int status);
 int system(const char *cmdstring);
 
 /*
+ * デーモン関数のプロトタイプ
+ */
+void daemonize(const char *cmd);
+
+/*
  * エラー関数のプロトタイプ
  *
  * __attribute__：関数属性の定義
