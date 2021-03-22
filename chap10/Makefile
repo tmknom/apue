@@ -15,3 +15,7 @@ sigpending: ## run sigpending
 sigsetjmp: ## run sigsetjmp
 	$(call gcc,$(CURRENT_DIR)/sigsetjmp.c)
 	make run
+
+sigsuspend: ## run sigsuspend
+	$(call gcc,$(CURRENT_DIR)/sigsuspend.c)
+	make run
