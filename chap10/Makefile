@@ -23,3 +23,7 @@ sigsuspend: ## run sigsuspend
 atomic: ## run atomic
 	$(call gcc,$(CURRENT_DIR)/atomic.c)
 	make run
+
+system: ## run system
+	$(call gcc,$(CURRENT_DIR)/system.c)
+	make run
