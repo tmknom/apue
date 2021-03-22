@@ -5,6 +5,12 @@
 #include <sys/resource.h>
 #include <syslog.h>
 #include <fcntl.h>
+#include <errno.h>
+
+#define LOCKFILE "/var/run/daemon.pid"
+#define LOCKMODE (S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)
+
+extern int lockfile(int);
 
 /*
  * 自身をデーモン化
@@ -63,4 +69,35 @@ void daemonize(const char *cmd) {
         syslog(LOG_ERR, "unexpected file descriptors %d %d %d", fd0, fd1, fd2);
         exit(1);
     }
+}
+
+/*
+ * すでにデーモンが起動しているかチェック
+ */
+int already_running(void) {
+    int fd;
+    char buf[16];
+
+    errno = 0;
+    fd = open(LOCKFILE, O_RDWR | O_CREAT, LOCKMODE);
+    if (fd < 0) {
+        syslog(LOG_ERR, "cannot open %s: %s", LOCKFILE, strerror(errno));
+        exit(errno);
+    }
+
+    // すでにロックされていたら終了
+    if (lockfile(fd) < 0) {
+        if (errno == EACCES || errno == EAGAIN) {
+            close(fd);
+            return (1);
+        }
+        syslog(LOG_ERR, "cannot lock %s: %s", LOCKFILE, strerror(errno));
+        exit(errno);
+    }
+
+    // pidファイルをクリアして、改めて現在のpidを書き込む
+    ftruncate(fd, 0);
+    sprintf(buf, "%ld", (long) getpid());
+    write(fd, buf, strlen(buf) + 1);
+    return (0);
 }

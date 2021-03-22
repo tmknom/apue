@@ -39,6 +39,8 @@ int system(const char *cmdstring);
  */
 void daemonize(const char *cmd);
 
+int already_running(void);
+
 /*
  * エラー関数のプロトタイプ
  *
