@@ -19,3 +19,7 @@ cleanup: ## run cleanup
 timedlock: ## run timedlock
 	$(call gcc,$(CURRENT_DIR)/timedlock.c)
 	$(call exec)
+
+barrier: ## run barrier
+	$(call gcc,$(CURRENT_DIR)/barrier.c)
+	$(call exec)
