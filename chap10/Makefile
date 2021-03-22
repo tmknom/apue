@@ -19,3 +19,7 @@ sigsetjmp: ## run sigsetjmp
 sigsuspend: ## run sigsuspend
 	$(call gcc,$(CURRENT_DIR)/sigsuspend.c)
 	make run
+
+atomic: ## run atomic
+	$(call gcc,$(CURRENT_DIR)/atomic.c)
+	make run
