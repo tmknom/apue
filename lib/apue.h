@@ -31,6 +31,8 @@ void set_fl(int, int);
 
 void clr_fl(int, int);
 
+int lock_reg(int fd, int cmd, int type, off_t offset, int whence, off_t len);
+
 int lockfile(int fd);
 
 /*
