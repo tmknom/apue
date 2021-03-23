@@ -33,6 +33,8 @@ void clr_fl(int, int);
 
 int lock_reg(int fd, int cmd, int type, off_t offset, int whence, off_t len);
 
+pid_t lock_test(int fd, int type, off_t offset, int whence, off_t len);
+
 int lockfile(int fd);
 
 /*
