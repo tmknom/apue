@@ -74,6 +74,21 @@ void set_fl(int fd, int flags) {
 }
 
 /*
+ * 指定したファイルディスクリプションのステータスフラグをオフにする
+ */
+void clr_fl(int fd, int flags) {
+    int val;
+
+    if ((val = fcntl(fd, F_GETFD, 0)) < 0)
+        err_sys("fcntl F_GETFD error");
+
+    val &= ~flags; // フラグをオフにする
+
+    if (fcntl(fd, F_SETFD, val) < 0)
+        err_sys("fcntl F_SETFD error");
+}
+
+/*
  * ファイル全体にライトロック
  */
 int lockfile(int fd) {
