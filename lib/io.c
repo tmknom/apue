@@ -134,3 +134,23 @@ int lockfile(int fd) {
     fl.l_len = 0;
     return (fcntl(fd, F_SETLK, &fl));
 }
+
+ssize_t readn(int fd, void *ptr, size_t n) {
+    size_t nleft;
+    ssize_t nread;
+
+    nleft = n;
+    while (nleft > 0) {
+        if ((nread = read(fd, ptr, nleft)) < 0) {
+            if (nleft == n)
+                return (-1); // エラー
+            else
+                break; // これまでの読み取り量を返す
+        } else if (nread == 0) {
+            break;  // ファイル末尾
+        }
+        nleft -= nread;
+        ptr += nread;
+    }
+    return (n - nleft);
+}

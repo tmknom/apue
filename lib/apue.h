@@ -37,6 +37,8 @@ pid_t lock_test(int fd, int type, off_t offset, int whence, off_t len);
 
 int lockfile(int fd);
 
+ssize_t readn(int fd, void *ptr, size_t n);
+
 /*
  * IO関数のマクロ定義
  */
