@@ -39,6 +39,8 @@ int lockfile(int fd);
 
 ssize_t readn(int fd, void *ptr, size_t n);
 
+ssize_t writen(int fd, const void *ptr, size_t n);
+
 /*
  * IO関数のマクロ定義
  */
