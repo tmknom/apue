@@ -19,3 +19,7 @@ myuclc: ## run myuclc
 prompt: ## run prompt
 	$(call gcc,$(CURRENT_DIR)/prompt.c)
 	make run
+
+add2: ## run add2
+	docker run --rm -w /work -v $(PROJECT_ROOT):/work debian:gcc gcc -pthread -lrt -Wall -Og -o /work/bin/add2 /work/chap15/add2.c $(LIB_PATH)
+	make run
