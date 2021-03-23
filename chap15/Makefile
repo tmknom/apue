@@ -7,3 +7,7 @@ pipe: ## run pipe
 pager: ## run pager
 	$(call gcc,$(CURRENT_DIR)/pager.c)
 	make run
+
+popen: ## run popen
+	$(call gcc,$(CURRENT_DIR)/popen.c)
+	make run
