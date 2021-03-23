@@ -4,6 +4,7 @@
 #include "apue.h"
 #include <errno.h>
 #include <limits.h>
+#include <fcntl.h>
 
 #ifdef PATH_MAX
 static long pathmax = PATH_MAX;
@@ -55,4 +56,121 @@ char *path_alloc(size_t *sizep) { // 非nullの場合には、sizepに確保し�
         *sizep = size;
 
     return ptr;
+}
+
+/*
+ * 指定したファイルディスクリプションのステータスフラグをオンにする
+ */
+void set_fl(int fd, int flags) {
+    int val;
+
+    if ((val = fcntl(fd, F_GETFD, 0)) < 0)
+        err_sys("fcntl F_GETFD error");
+
+    val |= flags; // フラグをオンにする
+
+    if (fcntl(fd, F_SETFD, val) < 0)
+        err_sys("fcntl F_SETFD error");
+}
+
+/*
+ * 指定したファイルディスクリプションのステータスフラグをオフにする
+ */
+void clr_fl(int fd, int flags) {
+    int val;
+
+    if ((val = fcntl(fd, F_GETFD, 0)) < 0)
+        err_sys("fcntl F_GETFD error");
+
+    val &= ~flags; // フラグをオフにする
+
+    if (fcntl(fd, F_SETFD, val) < 0)
+        err_sys("fcntl F_SETFD error");
+}
+
+/*
+ * ファイルの範囲ロック／アンロック
+ */
+int lock_reg(int fd, int cmd, int type, off_t offset, int whence, off_t len) {
+    struct flock lock;
+
+    lock.l_type = type;
+    lock.l_start = offset;
+    lock.l_whence = whence;
+    lock.l_len = len;
+
+    return (fcntl(fd, cmd, &lock));
+}
+
+/*
+ * ロック状態の検査
+ */
+pid_t lock_test(int fd, int type, off_t offset, int whence, off_t len) {
+    struct flock lock;
+
+    lock.l_type = type;
+    lock.l_start = offset;
+    lock.l_whence = whence;
+    lock.l_len = len;
+
+    if (fcntl(fd, F_GETLK, &lock) < 0)
+        err_sys("fcntl error");
+
+    if (lock.l_type == F_UNLCK)
+        return (0); // 他のプロセスはロックしていない
+
+    return (lock.l_pid); // ロックしているプロセスID
+}
+
+/*
+ * ファイル全体にライトロック
+ */
+int lockfile(int fd) {
+    struct flock fl;
+
+    fl.l_type = F_WRLCK;
+    fl.l_start = 0;
+    fl.l_whence = SEEK_SET;
+    fl.l_len = 0;
+    return (fcntl(fd, F_SETLK, &fl));
+}
+
+ssize_t readn(int fd, void *ptr, size_t n) {
+    size_t nleft;
+    ssize_t nread;
+
+    nleft = n;
+    while (nleft > 0) {
+        if ((nread = read(fd, ptr, nleft)) < 0) {
+            if (nleft == n)
+                return (-1); // エラー
+            else
+                break; // これまでの読み取り量を返す
+        } else if (nread == 0) {
+            break;  // ファイル末尾
+        }
+        nleft -= nread;
+        ptr += nread;
+    }
+    return (n - nleft);
+}
+
+ssize_t writen(int fd, const void *ptr, size_t n) {
+    size_t nleft;
+    ssize_t nwritten;
+
+    nleft = n;
+    while (nleft > 0) {
+        if ((nwritten = write(fd, ptr, nleft)) < 0) {
+            if (nleft == n)
+                return (-1); // エラー
+            else
+                break; // これまでの書き出し量を返す
+        } else if (nwritten == 0) {
+            break;
+        }
+        nleft -= nwritten;
+        ptr += nwritten;
+    }
+    return (n - nleft);
 }
