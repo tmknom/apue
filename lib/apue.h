@@ -27,6 +27,8 @@
  */
 char *path_alloc(size_t *sizep);
 
+void set_fl(int, int);
+
 int lockfile(int fd);
 
 /*

@@ -59,6 +59,21 @@ char *path_alloc(size_t *sizep) { // 非nullの場合には、sizepに確保し�
 }
 
 /*
+ * 指定したファイルディスクリプションのステータスフラグをオンにする
+ */
+void set_fl(int fd, int flags) {
+    int val;
+
+    if ((val = fcntl(fd, F_GETFD, 0)) < 0)
+        err_sys("fcntl F_GETFD error");
+
+    val |= flags; // フラグをオンにする
+
+    if (fcntl(fd, F_SETFD, val) < 0)
+        err_sys("fcntl F_SETFD error");
+}
+
+/*
  * ファイル全体にライトロック
  */
 int lockfile(int fd) {
