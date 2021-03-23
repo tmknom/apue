@@ -15,3 +15,7 @@ popen: ## run popen
 myuclc: ## run myuclc
 	docker run --rm -w /work -v $(PROJECT_ROOT):/work debian:gcc gcc -pthread -lrt -Wall -Og -o /work/bin/myuclc /work/chap15/myuclc.c $(LIB_PATH)
 	make run
+
+prompt: ## run prompt
+	$(call gcc,$(CURRENT_DIR)/prompt.c)
+	make run
