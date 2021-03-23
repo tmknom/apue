@@ -12,7 +12,7 @@ PROJECT_ROOT := $$(git rev-parse --show-toplevel)
 CURRENT_DIR := $(WORK_PATH)/$(notdir $(CURDIR))
 
 define gcc
-	docker run --rm -w /work -v $(PROJECT_ROOT):/work debian:gcc gcc -pthread -Wall -Og -o $(BINARY_PATH) ${1} $(LIB_PATH)
+	docker run --rm -w /work -v $(PROJECT_ROOT):/work debian:gcc gcc -pthread -lrt -Wall -Og -o $(BINARY_PATH) ${1} $(LIB_PATH)
 endef
 
 define exec
