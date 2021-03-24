@@ -27,6 +27,8 @@
  */
 char *path_alloc(size_t *sizep);
 
+int set_cloexec(int fd);
+
 void set_fl(int, int);
 
 void clr_fl(int, int);
