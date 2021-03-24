@@ -59,6 +59,19 @@ char *path_alloc(size_t *sizep) { // 非nullの場合には、sizepに確保し�
 }
 
 /*
+ * exec時クローズフラグの設定
+ */
+int set_cloexec(int fd) {
+    int val;
+
+    if ((val = fcntl(fd, F_GETFD, 0)) < 0)
+        return (-1);
+    val |= FD_CLOEXEC;
+
+    return (fcntl(fd, F_SETFD, val));
+}
+
+/*
  * 指定したファイルディスクリプションのステータスフラグをオンにする
  */
 void set_fl(int fd, int flags) {
