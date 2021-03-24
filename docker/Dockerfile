@@ -8,3 +8,6 @@ RUN apt-get update -y \
 
 RUN useradd -M -d / -G sudo -s /bin/bash docker \
     && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+RUN echo 'ruptime 49152/tcp' >> /etc/services \
+    && echo 'ruptime 49152/udp' >> /etc/services
