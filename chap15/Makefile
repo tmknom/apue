@@ -27,3 +27,7 @@ add2: ## run add2
 coprocess: ## run coprocess
 	$(call gcc,$(CURRENT_DIR)/coprocess.c)
 	make run
+
+memory: ## run memory
+	$(call gcc,$(CURRENT_DIR)/memory.c)
+	$(call exec)
