@@ -15,3 +15,7 @@ client1: ## run client1
 server2: ## run server2
 	docker run --rm -w /work -v $(PROJECT_ROOT):/work debian:gcc gcc -pthread -lrt -Wall -Og -o /work/bin/server2 /work/chap16/server2.c $(LIB_PATH)
 	make run
+
+client2: ## run client2
+	$(call gcc,$(CURRENT_DIR)/client2.c)
+	make run
