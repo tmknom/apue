@@ -7,3 +7,7 @@ poll: ## run poll
 msgsnd: ## run msgsnd
 	$(call gcc,$(CURRENT_DIR)/msgsnd.c)
 	make run
+
+bind: ## run bind
+	$(call gcc,$(CURRENT_DIR)/bind.c)
+	$(call exec)
