@@ -7,3 +7,7 @@ tcsetattr: ## run tcsetattr
 isatty: ## run isatty
 	$(call gcc,$(CURRENT_DIR)/isatty.c)
 	$(call exec)
+
+ttyname: ## run ttyname
+	$(call gcc,$(CURRENT_DIR)/ttyname.c)
+	$(call exec)
