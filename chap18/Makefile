@@ -15,3 +15,7 @@ ttyname: ## run ttyname
 getpass: ## run getpass
 	$(call gcc,$(CURRENT_DIR)/getpass.c)
 	$(call exec)
+
+winsize: ## run winsize
+	$(call gcc,$(CURRENT_DIR)/winsize.c)
+	$(call exec)
