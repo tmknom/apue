@@ -11,3 +11,7 @@ isatty: ## run isatty
 ttyname: ## run ttyname
 	$(call gcc,$(CURRENT_DIR)/ttyname.c)
 	$(call exec)
+
+getpass: ## run getpass
+	$(call gcc,$(CURRENT_DIR)/getpass.c)
+	$(call exec)
